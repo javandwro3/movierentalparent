@@ -1,5 +1,6 @@
 package pl.jwrabel.trainings.javandwro3.movierental;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,6 +18,16 @@ public class Customer {
 	private String lastName;
 	private String city;
 	private Date date;
+
+	// "0,123123213,Adam,Kowalski,Wrocław,2015-01-02"
+	public Customer(String text) throws ParseException {
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
+		Date parse = simpleDateFormat.parse("2015-01-02");
+
+
+
+	}
 
 	public Customer(String pesel, String firstName, String lastName, String city, Date date) {
 		id = nextId;
