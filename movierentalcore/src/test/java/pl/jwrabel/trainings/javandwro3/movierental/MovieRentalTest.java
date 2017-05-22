@@ -1,6 +1,7 @@
 package pl.jwrabel.trainings.javandwro3.movierental;
 
 import org.junit.Test;
+import pl.jwrabel.trainings.javandwro3.movierental.exceptions.MovieAlreadyExistsException;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullCustomerException;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullMovieException;
 
@@ -38,7 +39,7 @@ public class MovieRentalTest {
 	}
 
 	@Test
-	public void addMovie_correctCase() throws NullMovieException {
+	public void addMovie_correctCase() throws NullMovieException, MovieAlreadyExistsException {
 		// given
 		MovieRental movieRental = new MovieRental();
 		Movie movie = new Movie("Action", "Terminator", "bla");
@@ -51,8 +52,19 @@ public class MovieRentalTest {
 		assertTrue(movieRental.getMovies().contains(movie));
 	}
 
+	@Test(expected = MovieAlreadyExistsException.class)
+	public void addMovie_duplicate() throws NullMovieException, MovieAlreadyExistsException {
+		// given
+		MovieRental movieRental = new MovieRental();
+		Movie movie = new Movie("Action", "Terminator", "bla");
+
+		// when
+		movieRental.addMovie(movie);
+		movieRental.addMovie(movie);
+	}
+
 	@Test(expected = NullMovieException.class)
-	public void addMovie_nullMovie() throws NullMovieException {
+	public void addMovie_nullMovie() throws NullMovieException, MovieAlreadyExistsException {
 		// given
 		MovieRental movieRental = new MovieRental();
 		Movie movie = null;

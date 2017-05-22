@@ -1,5 +1,6 @@
 package pl.jwrabel.trainings.javandwro3.movierental;
 
+import pl.jwrabel.trainings.javandwro3.movierental.exceptions.MovieAlreadyExistsException;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullCustomerException;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullMovieException;
 
@@ -28,12 +29,21 @@ public class MovieRental {
 		customers.add(customer);
 	}
 
-	public void addMovie(Movie movie) throws NullMovieException {
+	public void addMovie(Movie movie) throws NullMovieException, MovieAlreadyExistsException {
 		if (movie == null) {
 			throw new NullMovieException();
 		}
 
+		if(movies.contains(movie)){
+			throw new MovieAlreadyExistsException();
+		}
+
 		movies.add(movie);
+	}
+
+	public void addRent(Rent rent){
+		// TODO handle errors
+		rents.add(rent);
 	}
 
 	public List<Customer> getCustomers() {
