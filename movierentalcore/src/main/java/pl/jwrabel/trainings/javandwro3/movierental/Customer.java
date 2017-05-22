@@ -32,6 +32,8 @@ public class Customer {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(id);
 		stringBuilder.append(CSV_SEPARATOR);
+		stringBuilder.append(pesel);
+		stringBuilder.append(CSV_SEPARATOR);
 		stringBuilder.append(firstName);
 		stringBuilder.append(CSV_SEPARATOR);
 		stringBuilder.append(lastName);
@@ -40,7 +42,7 @@ public class Customer {
 		stringBuilder.append(CSV_SEPARATOR);
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String formattedDate = simpleDateFormat.format(new Date());
+		String formattedDate = simpleDateFormat.format(date);
 		stringBuilder.append(formattedDate);
 
 		return stringBuilder.toString();
