@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by jakubwrabel on 19/05/2017.
  */
 public class Customer {
+	public static final String CSV_SEPARATOR = ",";
 	private static int nextId = 0;
 
 	private int id;
@@ -24,6 +25,21 @@ public class Customer {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.city = city;
+	}
+
+	public String toCSVString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(id);
+		stringBuilder.append(CSV_SEPARATOR);
+		stringBuilder.append(firstName);
+		stringBuilder.append(CSV_SEPARATOR);
+		stringBuilder.append(lastName);
+		stringBuilder.append(CSV_SEPARATOR);
+		stringBuilder.append(city);
+		stringBuilder.append(CSV_SEPARATOR);
+		stringBuilder.append(date);
+
+		return stringBuilder.toString();
 	}
 
 	public Date getDate() {
