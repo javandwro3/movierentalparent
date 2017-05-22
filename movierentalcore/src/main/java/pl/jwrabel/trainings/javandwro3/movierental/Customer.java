@@ -21,12 +21,17 @@ public class Customer {
 
 	// "0,123123213,Adam,Kowalski,Wrocław,2015-01-02"
 	public Customer(String text) throws ParseException {
+		String[] split = text.split(CSV_SEPARATOR);
 
+		this.id = Integer.parseInt(split[0]);
+		this.pesel = split[1];
+		this.firstName = split[2];
+		this.lastName = split[3];
+		this.city = split[4];
+
+		String dateString = split[5];
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
-		Date parse = simpleDateFormat.parse("2015-01-02");
-
-
-
+		this.date = simpleDateFormat.parse(dateString);
 	}
 
 	public Customer(String pesel, String firstName, String lastName, String city, Date date) {
