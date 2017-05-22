@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class Customer {
 	public static final String CSV_SEPARATOR = ",";
+	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	private static int nextId = 0;
 
 	private int id;
@@ -41,7 +42,7 @@ public class Customer {
 		stringBuilder.append(city);
 		stringBuilder.append(CSV_SEPARATOR);
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
 		String formattedDate = simpleDateFormat.format(date);
 		stringBuilder.append(formattedDate);
 
