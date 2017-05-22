@@ -1,5 +1,6 @@
 package pl.jwrabel.trainings.javandwro3.movierental;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -37,7 +38,10 @@ public class Customer {
 		stringBuilder.append(CSV_SEPARATOR);
 		stringBuilder.append(city);
 		stringBuilder.append(CSV_SEPARATOR);
-		stringBuilder.append(date);
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String formattedDate = simpleDateFormat.format(new Date());
+		stringBuilder.append(formattedDate);
 
 		return stringBuilder.toString();
 	}
