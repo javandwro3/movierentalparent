@@ -2,6 +2,7 @@ package pl.jwrabel.trainings.javandwro3.movierental;
 
 import org.junit.Test;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullCustomerException;
+import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullMovieException;
 
 import java.util.Date;
 
@@ -34,6 +35,30 @@ public class MovieRentalTest {
 
 		// when
 		movieRental.addCustomer(customer);
+	}
+
+	@Test
+	public void addMovie_correctCase() throws NullMovieException {
+		// given
+		MovieRental movieRental = new MovieRental();
+		Movie movie = new Movie("Action", "Terminator", "bla");
+
+		// when
+		movieRental.addMovie(movie);
+
+		// then
+		assertEquals(1, movieRental.getMovies().size());
+		assertTrue(movieRental.getMovies().contains(movie));
+	}
+
+	@Test(expected = NullMovieException.class)
+	public void addMovie_nullMovie() throws NullMovieException {
+		// given
+		MovieRental movieRental = new MovieRental();
+		Movie movie = null;
+
+		// when
+		movieRental.addMovie(movie);
 	}
 
 }

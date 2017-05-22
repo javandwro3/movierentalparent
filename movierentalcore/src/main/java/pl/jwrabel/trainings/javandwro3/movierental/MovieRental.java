@@ -1,6 +1,7 @@
 package pl.jwrabel.trainings.javandwro3.movierental;
 
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullCustomerException;
+import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullMovieException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,14 @@ public class MovieRental {
 		}
 
 		customers.add(customer);
+	}
+
+	public void addMovie(Movie movie) throws NullMovieException {
+		if (movie == null) {
+			throw new NullMovieException();
+		}
+
+		movies.add(movie);
 	}
 
 	public List<Customer> getCustomers() {
