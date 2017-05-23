@@ -1,5 +1,9 @@
 package pl.jwrabel.trainings.javandwro3.movierental;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+
+import java.io.File;
 import java.text.ParseException;
 import java.util.List;
 
@@ -8,6 +12,8 @@ import java.util.List;
  */
 public class DataFileReader {
 	public static List<Customer> readCustomersFromFile(String fileName) {
+
+		List<String> fileLines = Files.readLines(new File(fileName), Charsets.UTF_8);
 
 		// TODO FIX!!!
 		try {
