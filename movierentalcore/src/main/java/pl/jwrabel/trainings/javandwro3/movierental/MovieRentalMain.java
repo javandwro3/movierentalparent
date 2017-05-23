@@ -14,13 +14,15 @@ public class MovieRentalMain {
 		MovieRental movieRental = new MovieRental();
 		movieRental.printAllData();
 
-		System.out.println("--- DODAJĘ KLIENTA ---");
+		System.out.println("dodaję klienta");
 		movieRental.addCustomer(new Customer("1234", "Adam", "Kowalski", "Wrocław", new Date()));
-		System.out.println("--- DODAJĘ FILM ---");
+		System.out.println("dodaję film");
 		movieRental.addMovie(new Movie("Terminator", "Action", "BLA"));
 
 		movieRental.printAllData();
 
 		movieRental.saveCustomersToFile();
+
+
 	}
 }

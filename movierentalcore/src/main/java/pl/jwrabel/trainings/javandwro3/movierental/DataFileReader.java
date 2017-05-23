@@ -13,22 +13,18 @@ import java.util.List;
  * Created by jakubwrabel on 22/05/2017.
  */
 public class DataFileReader {
-	public static List<Customer> readCustomersFromFile(String fileName) {
+	public static List<Customer> readCustomersFromFile(String fileName) throws IOException {
 		List<Customer> customers = new ArrayList<>();
 
 		try {
-
 			List<String> fileLines = Files.readLines(new File(fileName), Charsets.UTF_8);
 
 			for (String line : fileLines) {
 				Customer customer = new Customer(line);
 				customers.add(customer);
 			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (ParseException e) {
-			e.printStackTrace();
+			throw new IOException();
 		}
 
 		return customers;

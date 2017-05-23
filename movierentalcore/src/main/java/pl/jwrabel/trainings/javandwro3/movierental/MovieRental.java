@@ -4,6 +4,7 @@ import pl.jwrabel.trainings.javandwro3.movierental.exceptions.MovieAlreadyExists
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullCustomerException;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullMovieException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,15 @@ public class MovieRental {
 	private List<Movie> movies;
 
 	public MovieRental() {
-		this.customers = new ArrayList<>();
 		this.rents = new ArrayList<>();
 		this.movies = new ArrayList<>();
+
+		try {
+			this.customers = DataFileReader.readCustomersFromFile("customers.csv");
+		} catch (IOException e) {
+			System.err.println("Błąd podczas wczytywania klientów z pliku");
+			this.customers = new ArrayList<>();
+		}
 	}
 
 	public void addCustomer(Customer customer) throws NullCustomerException {
@@ -59,6 +66,7 @@ public class MovieRental {
 	}
 
 	public void printAllData(){
+		System.out.println("====== WYPOŻYCZALNIA =====");
 		System.out.println("--- CUSTOMERS ---");
 		for (Customer customer : customers) {
 			System.out.println(customer);
@@ -73,6 +81,7 @@ public class MovieRental {
 		for (Rent rent : rents) {
 			System.out.println(rent);
 		}
+		System.out.println("==========================");
 	}
 
 	public void saveCustomersToFile(){
