@@ -18,6 +18,16 @@ public class Movie {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Movie{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", genre='" + genre + '\'' +
+				", description='" + description + '\'' +
+				'}';
+	}
+
 	public int getId() {
 		return id;
 	}

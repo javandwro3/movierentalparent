@@ -65,6 +65,18 @@ public class Customer {
 		return stringBuilder.toString();
 	}
 
+	@Override
+	public String toString() {
+		return "Customer{" +
+				"id=" + id +
+				", pesel='" + pesel + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", city='" + city + '\'' +
+				", date=" + date +
+				'}';
+	}
+
 	public Date getDate() {
 		return date;
 	}
