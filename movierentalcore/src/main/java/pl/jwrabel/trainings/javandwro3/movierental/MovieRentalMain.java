@@ -20,5 +20,7 @@ public class MovieRentalMain {
 		movieRental.addMovie(new Movie("Terminator", "Action", "BLA"));
 
 		movieRental.printAllData();
+
+		movieRental.saveCustomersToFile();
 	}
 }

@@ -74,4 +74,8 @@ public class MovieRental {
 			System.out.println(rent);
 		}
 	}
+
+	public void saveCustomersToFile(){
+		DataFileWriter.writeCustomersToFile("customers.csv", customers);
+	}
 }
