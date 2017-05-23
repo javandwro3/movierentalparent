@@ -1,4 +1,6 @@
-package pl.jwrabel.trainings.javandwro3.movierental;
+package pl.jwrabel.trainings.javandwro3.movierental.io;
+
+import pl.jwrabel.trainings.javandwro3.movierental.CsvObject;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -18,10 +18,10 @@ public class MovieRentalMain {
 		movieRental.addCustomer(new Customer("1234", "Adam", "Kowalski", "Wrocław", new Date()));
 		System.out.println("dodaję film");
 		movieRental.addMovie(new Movie("Terminator", "Action", "BLA"));
+		System.out.println("dodaję wypożyczenie");
+		movieRental.addRent(new Rent(0,0));
 
 		movieRental.printAllData();
-
-		movieRental.saveCustomersToFile();
 
 
 	}

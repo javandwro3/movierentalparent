@@ -3,6 +3,11 @@ package pl.jwrabel.trainings.javandwro3.movierental;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.MovieAlreadyExistsException;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullCustomerException;
 import pl.jwrabel.trainings.javandwro3.movierental.exceptions.NullMovieException;
+import pl.jwrabel.trainings.javandwro3.movierental.factory.CustomerFactory;
+import pl.jwrabel.trainings.javandwro3.movierental.factory.MovieFactory;
+import pl.jwrabel.trainings.javandwro3.movierental.factory.RentFactory;
+import pl.jwrabel.trainings.javandwro3.movierental.io.DataFileReader;
+import pl.jwrabel.trainings.javandwro3.movierental.io.DataFileWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,11 +25,35 @@ public class MovieRental {
 		this.rents = new ArrayList<>();
 		this.movies = new ArrayList<>();
 
+		readDataFromFile();
+	}
+
+	private void readDataFromFile() {
+		DataFileReader<Customer> customerDataFileReader = new DataFileReader<>(new CustomerFactory());
+
 		try {
-			this.customers = DataFileReader.readCustomersFromFile("customers.csv");
+			this.customers = customerDataFileReader.readFromFile("customers.csv");
 		} catch (IOException e) {
 			System.err.println("Błąd podczas wczytywania klientów z pliku");
 			this.customers = new ArrayList<>();
+		}
+
+		DataFileReader<Movie> movieDataFileReader = new DataFileReader<>(new MovieFactory());
+
+		try {
+			this.movies = movieDataFileReader.readFromFile("movies.csv");
+		} catch (IOException e) {
+			System.err.println("Błąd podczas wczytywania filmów z pliku");
+			this.movies = new ArrayList<>();
+		}
+
+		DataFileReader<Rent> rentDataFileReader = new DataFileReader<>(new RentFactory());
+
+		try {
+			this.rents = rentDataFileReader.readFromFile("rents.csv");
+		} catch (IOException e) {
+			System.err.println("Błąd podczas wczytywania wypożyczeń z pliku");
+			this.rents = new ArrayList<>();
 		}
 	}
 
@@ -34,6 +63,7 @@ public class MovieRental {
 		}
 
 		customers.add(customer);
+		saveCustomersToFile();
 	}
 
 	public void addMovie(Movie movie) throws NullMovieException, MovieAlreadyExistsException {
@@ -46,11 +76,13 @@ public class MovieRental {
 		}
 
 		movies.add(movie);
+		saveMoviesToFile();
 	}
 
 	public void addRent(Rent rent) {
 		// TODO handle errors
 		rents.add(rent);
+		saveRentsToFile();
 	}
 
 	public List<Customer> getCustomers() {
