@@ -23,13 +23,16 @@ public class Movie implements CsvObject {
 		this.description = split[3];
 	}
 
-
 	public Movie(String title, String genre, String description) {
 		id = nextId;
 		nextId++;
 		this.title = title;
 		this.genre = genre;
 		this.description = description;
+	}
+
+	public static void setNextId(int nextId) {
+		Movie.nextId = nextId;
 	}
 
 	public String toCSVString() {
