@@ -57,4 +57,21 @@ public class MovieRental {
 	public List<Movie> getMovies() {
 		return movies;
 	}
+
+	public void printAllData(){
+		System.out.println("--- CUSTOMERS ---");
+		for (Customer customer : customers) {
+			System.out.println(customer);
+		}
+
+		System.out.println("--- MOVIES ---");
+		for (Movie movie : movies) {
+			System.out.println(movie);
+		}
+
+		System.out.println("--- RENTS ---");
+		for (Rent rent : rents) {
+			System.out.println(rent);
+		}
+	}
 }
