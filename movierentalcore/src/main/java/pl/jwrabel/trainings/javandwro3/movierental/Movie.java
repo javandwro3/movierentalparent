@@ -1,12 +1,11 @@
 package pl.jwrabel.trainings.javandwro3.movierental;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by jakubwrabel on 19/05/2017.
  */
-public class Movie {
+public class Movie implements CsvObject {
 	public static final String CSV_SEPARATOR = ",";
 	private static int nextId = 0;
 	private int id;

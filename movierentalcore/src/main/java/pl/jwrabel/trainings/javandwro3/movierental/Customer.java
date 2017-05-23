@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by jakubwrabel on 19/05/2017.
  */
-public class Customer {
+public class Customer implements CsvObject {
 	public static final String CSV_SEPARATOR = ",";
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	private static int nextId = 0;

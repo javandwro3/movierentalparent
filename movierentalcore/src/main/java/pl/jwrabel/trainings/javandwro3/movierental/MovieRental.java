@@ -41,14 +41,14 @@ public class MovieRental {
 			throw new NullMovieException();
 		}
 
-		if(movies.contains(movie)){
+		if (movies.contains(movie)) {
 			throw new MovieAlreadyExistsException();
 		}
 
 		movies.add(movie);
 	}
 
-	public void addRent(Rent rent){
+	public void addRent(Rent rent) {
 		// TODO handle errors
 		rents.add(rent);
 	}
@@ -65,7 +65,7 @@ public class MovieRental {
 		return movies;
 	}
 
-	public void printAllData(){
+	public void printAllData() {
 		System.out.println("====== WYPOŻYCZALNIA =====");
 		System.out.println("--- CUSTOMERS ---");
 		for (Customer customer : customers) {
@@ -84,7 +84,15 @@ public class MovieRental {
 		System.out.println("==========================");
 	}
 
-	public void saveCustomersToFile(){
-		DataFileWriter.writeCustomersToFile("customers.csv", customers);
+	public void saveCustomersToFile() {
+		DataFileWriter.writeObjectToFile("customers.csv", customers);
+	}
+
+	public void saveMoviesToFile() {
+		DataFileWriter.writeObjectToFile("movies.csv", movies);
+	}
+
+	public void saveRentsToFile() {
+		DataFileWriter.writeObjectToFile("rents.csv", rents);
 	}
 }
