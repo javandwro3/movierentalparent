@@ -5,12 +5,20 @@ import java.awt.*;
 
 /**
  * Created by jakubwrabel on 24/05/2017.
+ * <p>
+ * Okno stworzone w Swingu do wyświetlania danych wypożyczalni filmów
  */
 public class MovieRentalWindow extends JFrame {
-
 	private JList<Customer> customerJList;
+	private JList<Movie> movieJList;
+	private JList<Rent> rentJList;
+
 	private MovieRental movieRental;
 
+	/***
+	 * Konstruktor klasy {@link MovieRentalWindow}, przyjmuje obiekt {@link MovieRental} - wypożyczalnię filmów
+	 * dla której ma być ustawione, "wypożyczalnię dla której ma być to okno"
+	 */
 	public MovieRentalWindow(MovieRental movieRental) throws HeadlessException {
 		this.movieRental = movieRental;
 
@@ -22,9 +30,20 @@ public class MovieRentalWindow extends JFrame {
 		customerJList = new JList<>();
 		add(customerJList);
 
+		movieJList = new JList<>();
+		add(movieJList);
+
+		rentJList = new JList<>();
+		add(rentJList);
+
 		showCustomers();
+		showMovies();
+		showRents();
 	}
 
+	/***
+	 * Metoda main do stworzenia wypożyczalni i wyświetlenia dla niej okna
+	 */
 	public static void main(String[] args) {
 		MovieRental movieRental = new MovieRental();
 		new MovieRentalWindow(movieRental);
@@ -48,6 +67,17 @@ public class MovieRentalWindow extends JFrame {
 
 		// ustawienie tablicy klientów jako danych, które ma wyświetlać customerJList - Swingowa lista
 		customerJList.setListData(customersArray);
+	}
 
+	public void showRents() {
+		java.util.List<Rent> rentsList = movieRental.getRents();
+		Rent[] rentsArray = rentsList.toArray(new Rent[rentsList.size()]);
+		rentJList.setListData(rentsArray);
+	}
+
+	public void showMovies() {
+		java.util.List<Movie> movieList = movieRental.getMovies();
+		Movie[] moviesArray = movieList.toArray(new Movie[movieList.size()]);
+		movieJList.setListData(moviesArray);
 	}
 }
