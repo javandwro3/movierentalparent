@@ -11,6 +11,7 @@ import pl.jwrabel.trainings.javandwro3.movierental.io.DataFileWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -37,6 +38,10 @@ public class MovieRental {
 			System.err.println("Błąd podczas wczytywania klientów z pliku");
 			this.customers = new ArrayList<>();
 		}
+
+		// Inny sposób na ustawienie kolejnego nextId
+		int maxId = this.customers.stream().mapToInt(x -> x.getId()).summaryStatistics().getMax();
+		Customer.setNextId(maxId + 1);
 
 		DataFileReader<Movie> movieDataFileReader = new DataFileReader<>(new MovieFactory());
 

@@ -8,6 +8,7 @@ import java.text.ParseException;
 public class Movie implements CsvObject {
 	public static final String CSV_SEPARATOR = ",";
 	private static int nextId = 0;
+
 	private int id;
 	private String title;
 	private String genre;
@@ -18,6 +19,11 @@ public class Movie implements CsvObject {
 		String[] split = text.split(CSV_SEPARATOR);
 
 		this.id = Integer.parseInt(split[0]);
+		// ustawienie nextId na kolejny po ID właśnie tworzonego filmu
+		if (nextId < this.id + 1) {
+			nextId = this.id + 1;
+		}
+
 		this.title = split[1];
 		this.genre = split[2];
 		this.description = split[3];

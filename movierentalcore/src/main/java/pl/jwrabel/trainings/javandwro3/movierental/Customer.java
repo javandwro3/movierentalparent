@@ -35,6 +35,10 @@ public class Customer implements CsvObject {
 		String[] split = text.split(CSV_SEPARATOR);
 
 		this.id = Integer.parseInt(split[0]);
+		if (nextId < this.id + 1) {
+			nextId = this.id + 1;
+		}
+
 		this.pesel = split[1];
 		this.firstName = split[2];
 		this.lastName = split[3];
@@ -43,6 +47,10 @@ public class Customer implements CsvObject {
 		String dateString = split[5];
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
 		this.date = simpleDateFormat.parse(dateString);
+	}
+
+	public static void setNextId(int nextId) {
+		Customer.nextId = nextId;
 	}
 
 	public String toCSVString() {
