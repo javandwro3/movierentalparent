@@ -1,11 +1,14 @@
 package pl.jwrabel.trainings.javandwro3.movierental.factory;
 
+import pl.jwrabel.trainings.javandwro3.movierental.Customer;
 import pl.jwrabel.trainings.javandwro3.movierental.Movie;
 
 import java.text.ParseException;
 
 /**
  * Created by jakubwrabel on 23/05/2017.
+ *
+ * Fabryka - klasa tworząca obiekty klasy {@link Movie}
  */
 public class MovieFactory implements MyFactory<Movie> {
 	@Override

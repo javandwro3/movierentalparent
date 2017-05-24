@@ -7,6 +7,7 @@ import java.awt.*;
  * Created by jakubwrabel on 24/05/2017.
  * <p>
  * Okno stworzone w Swingu do wyświetlania danych wypożyczalni filmów
+ * </p>
  */
 public class MovieRentalWindow extends JFrame {
 	private JList<Customer> customerJList;
@@ -69,12 +70,18 @@ public class MovieRentalWindow extends JFrame {
 		customerJList.setListData(customersArray);
 	}
 
+	/***
+	 * metoda wyciągająca wszystkie wypożyczenia z wypożyczalni i wyświetlająca je w rentsJList (liście w okienku)
+	 */
 	public void showRents() {
 		java.util.List<Rent> rentsList = movieRental.getRents();
 		Rent[] rentsArray = rentsList.toArray(new Rent[rentsList.size()]);
 		rentJList.setListData(rentsArray);
 	}
 
+	/***
+	 * metoda wyciągająca wszystkie filmy z wypożyczalni i wyświetlająca je w movieJList (liście w okienku)
+	 */
 	public void showMovies() {
 		java.util.List<Movie> movieList = movieRental.getMovies();
 		Movie[] moviesArray = movieList.toArray(new Movie[movieList.size()]);
