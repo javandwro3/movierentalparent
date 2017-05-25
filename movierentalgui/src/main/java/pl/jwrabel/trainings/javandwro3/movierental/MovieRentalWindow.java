@@ -2,6 +2,7 @@ package pl.jwrabel.trainings.javandwro3.movierental;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Created by jakubwrabel on 24/05/2017.
@@ -29,13 +30,27 @@ public class MovieRentalWindow extends JFrame {
 		setLayout(new FlowLayout());
 
 		customerJList = new JList<>();
+		customerJList.setPreferredSize(new Dimension(300,200));
 		add(customerJList);
 
-		movieJList = new JList<>();
+		movieJList.setPreferredSize(new Dimension(300,200));
 		add(movieJList);
 
 		rentJList = new JList<>();
+		rentJList.setPreferredSize(new Dimension(300,200));
 		add(rentJList);
+
+		JButton btnAddCustomer = new JButton("Dodaj klienta");
+		add(btnAddCustomer);
+
+		MovieRentalWindow movieRentalWindow = this;
+
+		btnAddCustomer.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddCustomerWindow(movieRental, movieRentalWindow);
+			}
+		});
 
 		showCustomers();
 		showMovies();

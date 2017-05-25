@@ -6,15 +6,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Date;
+import java.util.function.Consumer;
 
 /**
  * Created by jakubwrabel on 24/05/2017.
  */
 public class AddCustomerWindow extends JFrame {
 	private MovieRental movieRental;
+	private MovieRentalWindow movieRentalWindow;
 
-	public AddCustomerWindow(MovieRental movieRental) throws HeadlessException {
+	public AddCustomerWindow(MovieRental movieRental, MovieRentalWindow movieRentalWindow) throws HeadlessException {
 		this.movieRental = movieRental;
+		this.movieRentalWindow = movieRentalWindow;
 
 		setSize(600, 400);
 		setVisible(true);
@@ -53,8 +56,6 @@ public class AddCustomerWindow extends JFrame {
 		add(button);
 
 
-
-
 		button.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -66,6 +67,8 @@ public class AddCustomerWindow extends JFrame {
 				Customer customer = new Customer(pesel, firstName, lastName, city, new Date());
 				try {
 					movieRental.addCustomer(customer);
+					movieRentalWindow.showCustomers();
+
 					JOptionPane.showMessageDialog(button, "Udało się stworzyć klienta!");
 				} catch (NullCustomerException e1) {
 					e1.printStackTrace();
@@ -81,8 +84,4 @@ public class AddCustomerWindow extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
-		MovieRental movieRental = new MovieRental();
-		new AddCustomerWindow(movieRental);
-	}
 }
