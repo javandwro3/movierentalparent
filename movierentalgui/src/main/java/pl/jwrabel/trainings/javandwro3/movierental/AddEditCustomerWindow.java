@@ -72,15 +72,23 @@ public class AddEditCustomerWindow extends JFrame {
 				String pesel = txtPesel.getText();
 				String city = txtCity.getText();
 
-				Customer customer = new Customer(pesel, firstName, lastName, city, new Date());
-				try {
-					movieRental.addCustomer(customer);
-					movieRentalWindow.showCustomers();
-
-					JOptionPane.showMessageDialog(button, "Udało się stworzyć klienta!");
-				} catch (NullCustomerException e1) {
-					e1.printStackTrace();
+				if (customerToEdit == null) {
+					Customer customer = new Customer(pesel, firstName, lastName, city, new Date());
+					try {
+						movieRental.addCustomer(customer);
+						JOptionPane.showMessageDialog(button, "Udało się stworzyć klienta!");
+					} catch (NullCustomerException e1) {
+						e1.printStackTrace();
+					}
+				} else {
+					customerToEdit.setCity(city);
+					customerToEdit.setLastName(lastName);
+					customerToEdit.setFirstName(firstName);
+					customerToEdit.setPesel(pesel);
+					JOptionPane.showMessageDialog(button, "Udało się zmienić dane klienta!");
 				}
+
+				movieRentalWindow.showCustomers();
 
 				// Zamknięcie okna
 				setVisible(false);
