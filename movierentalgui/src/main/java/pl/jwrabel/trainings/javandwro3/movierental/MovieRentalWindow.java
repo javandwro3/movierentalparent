@@ -33,6 +33,7 @@ public class MovieRentalWindow extends JFrame {
 		customerJList.setPreferredSize(new Dimension(300,200));
 		add(customerJList);
 
+		movieJList = new JList<>();
 		movieJList.setPreferredSize(new Dimension(300,200));
 		add(movieJList);
 
@@ -42,6 +43,9 @@ public class MovieRentalWindow extends JFrame {
 
 		JButton btnAddCustomer = new JButton("Dodaj klienta");
 		add(btnAddCustomer);
+
+		JButton btnEditCustomer = new JButton("Edytuj klienta");
+		add(btnEditCustomer);
 
 		MovieRentalWindow movieRentalWindow = this;
 
