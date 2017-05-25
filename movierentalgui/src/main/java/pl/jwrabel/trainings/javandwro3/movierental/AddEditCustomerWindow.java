@@ -54,7 +54,7 @@ public class AddEditCustomerWindow extends JFrame {
 		txtCity.setPreferredSize(new Dimension(200, 50));
 		add(txtCity);
 
-		JButton button = new JButton("Dodaj");
+		JButton button = new JButton("Dodaj/Edytuj");
 		add(button);
 
 		if (customerToEdit != null) {
