@@ -53,6 +53,8 @@ public class AddCustomerWindow extends JFrame {
 		add(button);
 
 
+
+
 		button.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -68,6 +70,10 @@ public class AddCustomerWindow extends JFrame {
 				} catch (NullCustomerException e1) {
 					e1.printStackTrace();
 				}
+
+				// Zamknięcie okna
+				setVisible(false);
+				dispose();
 
 				movieRental.printAllData();
 			}
