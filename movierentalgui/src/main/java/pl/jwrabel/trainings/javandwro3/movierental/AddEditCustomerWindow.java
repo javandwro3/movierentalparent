@@ -6,23 +6,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Date;
-import java.util.function.Consumer;
 
 /**
  * Created by jakubwrabel on 24/05/2017.
  */
-public class AddCustomerWindow extends JFrame {
+public class AddEditCustomerWindow extends JFrame {
 	private MovieRental movieRental;
 	private MovieRentalWindow movieRentalWindow;
+	private Customer customerToEdit;
 
-	public AddCustomerWindow(MovieRental movieRental, MovieRentalWindow movieRentalWindow) throws HeadlessException {
+	public AddEditCustomerWindow(MovieRental movieRental, MovieRentalWindow movieRentalWindow, Customer customerToEdit) throws HeadlessException {
 		this.movieRental = movieRental;
 		this.movieRentalWindow = movieRentalWindow;
+		this.customerToEdit = customerToEdit;
 
 		setSize(600, 400);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
+		setTitle("Dodaj/edytuj klienta");
 
 		JLabel lblFirstName = new JLabel("Imię");
 		add(lblFirstName);
@@ -55,6 +57,12 @@ public class AddCustomerWindow extends JFrame {
 		JButton button = new JButton("Dodaj");
 		add(button);
 
+		if (customerToEdit != null) {
+			txtCity.setText(customerToEdit.getCity());
+			txtFirstName.setText(customerToEdit.getFirstName());
+			txtLastName.setText(customerToEdit.getLastName());
+			txtPesel.setText(customerToEdit.getPesel());
+		}
 
 		button.addActionListener(new AbstractAction() {
 			@Override

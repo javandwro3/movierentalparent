@@ -28,17 +28,18 @@ public class MovieRentalWindow extends JFrame {
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
+		setTitle("Wypożyczalnia filmów");
 
 		customerJList = new JList<>();
-		customerJList.setPreferredSize(new Dimension(300,200));
+		customerJList.setPreferredSize(new Dimension(300, 200));
 		add(customerJList);
 
 		movieJList = new JList<>();
-		movieJList.setPreferredSize(new Dimension(300,200));
+		movieJList.setPreferredSize(new Dimension(300, 200));
 		add(movieJList);
 
 		rentJList = new JList<>();
-		rentJList.setPreferredSize(new Dimension(300,200));
+		rentJList.setPreferredSize(new Dimension(300, 200));
 		add(rentJList);
 
 		JButton btnAddCustomer = new JButton("Dodaj klienta");
@@ -52,7 +53,20 @@ public class MovieRentalWindow extends JFrame {
 		btnAddCustomer.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddCustomerWindow(movieRental, movieRentalWindow);
+				new AddEditCustomerWindow(movieRental, movieRentalWindow, null);
+			}
+		});
+
+		btnEditCustomer.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Customer selectedCustomer = customerJList.getSelectedValue();
+
+				if (selectedCustomer == null) {
+					JOptionPane.showMessageDialog(btnAddCustomer, "Nie wybrano klienta!");
+				} else {
+					new AddEditCustomerWindow(movieRental, movieRentalWindow, selectedCustomer);
+				}
 			}
 		});
 
