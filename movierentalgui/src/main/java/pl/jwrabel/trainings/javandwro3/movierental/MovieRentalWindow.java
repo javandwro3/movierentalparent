@@ -31,7 +31,6 @@ public class MovieRentalWindow extends JFrame {
 		setTitle("Wypożyczalnia filmów");
 
 		customerJList = new JList<>();
-
 		JScrollPane customersScrollPane = new JScrollPane(customerJList);
 		customersScrollPane.setPreferredSize(new Dimension(300, 200));
 		add(customersScrollPane);
@@ -76,6 +75,8 @@ public class MovieRentalWindow extends JFrame {
 		showCustomers();
 		showMovies();
 		showRents();
+
+		repaint();
 	}
 
 	/***
